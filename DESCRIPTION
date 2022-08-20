@@ -1,12 +1,13 @@
 Package: climatederiv
 Title: Create datasets derived from published Jornada climate data
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R: c(
     person("Gregory", "Maurer", , "gmaurer@nmsu.edu", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-3007-8058"))
+           comment = c(ORCID = "0000-0002-3007-8058")),
     person("Brianda", "Hernandez-Rosales", , "bnhernandez90@outlook.com",
-           role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2701-4870"))
-Description: This R package takes meteorology datasets from a variety of published sources, calculates metrics like drought indices, VPD, and creates a new, derived dataset.
+           role = c("aut"), comment = c(ORCID = "0000-0002-2701-4870"))
+    )
+Description: This R package takes meteorology datasets from a variety of published sources, calculates metrics like drought indices and VPD, and creates a new, derived dataset for publication.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
