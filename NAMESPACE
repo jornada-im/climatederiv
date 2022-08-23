@@ -2,6 +2,7 @@
 
 export("%>%")
 export(derive103)
+export(derive104)
 export(from_edi)
 export(plot_103)
 importFrom(magrittr,"%>%")

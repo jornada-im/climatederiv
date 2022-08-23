@@ -21,7 +21,9 @@ Imports:
     readr,
     scPDSI,
     SPEI,
-    tidyr
+    tidyr,
+    xts,
+    zoo
 Depends: 
     R (>= 2.10)
 LazyData: true
