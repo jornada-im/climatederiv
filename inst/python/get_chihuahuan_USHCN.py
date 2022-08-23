@@ -27,7 +27,7 @@ def get_chihuahuan_USHCN(ushcn_path, dest_path=None):
     # Get the dataframe of 9 Chihuahuan desert sites
     # Note that this table is derived, essentially, from the station inventory
     # file for USHCN - ushcn-v2.5-stations.txt
-    chides_sites = pd.read_table(os.path.join('data/USHCN_CDSites.txt'))
+    chides_sites = pd.read_table(os.path.join('inst/extdata/USHCN_CDSites.txt'))
 
     print('The table of USHCN stations in the Chihuahuan Desert')
     print(chides_sites)

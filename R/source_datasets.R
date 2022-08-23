@@ -51,18 +51,18 @@ update_chihuahuan_USHCN <- function(
   reticulate::source_python('inst/python/get_chihuahuan_USHCN.py')
   message("Running python...")
   if(is.null(dest_path)){
-    ushcn_9sites_data <- get_chihuahuan_USHCN(ushcn_path,
+    ushcn_chihuahuan_data <- get_chihuahuan_USHCN(ushcn_path,
                                               reticulate::py_none())
   }
   else{
-    ushcn_9sites_data <- get_chihuahuan_USHCN(ushcn_path, dest_path)
+    ushcn_chihuahuan_data <- get_chihuahuan_USHCN(ushcn_path, dest_path)
   }
   # Make an archive copy of the data file
-  message("Archiving previous data file to 'data/ushcn_data_9chihuahuan_archive.rda'")
-  file.copy('data/ushcn_data_9chihuahuan.rda',
-            'data/ushcn_data_9chihuahuan_archive.rda',
+  message("Archiving previous data file to 'data/ushcn_chihuahuan_data_archive.rda'")
+  file.copy('data/ushcn_chihuahuan_data.rda',
+            'data/ushcn_chihuahuan_data_archive.rda',
             overwrite=T)
   # Overwrite with the new file
   message('Writing new file...')
-  save(ushcn_9sites_data, file='data/ushcn_data_9chihuahuan.rda')
+  save(ushcn_chihuahuan_data, file='data/ushcn_chihuahuan_data.rda')
 }
