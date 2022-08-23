@@ -8,6 +8,11 @@
 #   and average vapor pressure deficit.                                    #
 ############################################################################
 
+utils::globalVariables(c("Date","Year","Month","Ppt_mm_Tot","Air_TempC_Max",
+                         "Air_TempC_Min","Air_TempC_Avg", "Relative_Humidity_Max",
+                         "Relative_Humidity_Min","Relative_Humidity_Avg",
+                         "VPD_Avg","tavg","tmax","sitename","everything"))
+
 #' Create (and write) dataset 104 - climate metrics for the 15 Jornada NPP sites
 #'
 #' @param fname Name of the file to write if dest_path != NULL
@@ -35,7 +40,7 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
 
   # What do the variables and data look like?
   print(names(df_list$`G-BASN`))
-  head(df_list$`G-BASN`)
+  #head(df_list$`G-BASN`)
 
   # Package used to calculate vapor pressure deficit (was used for testing)
   #library(plantecophys)

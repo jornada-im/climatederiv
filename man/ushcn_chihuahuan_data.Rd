@@ -10,7 +10,15 @@ A data frame with 28776 rows and 12 variables:
 \item{stationid}{USHCN station identifier, unique alphanumeric}
 \item{date}{Date of observation, POSIXct}
 \item{year}{Year of observation, integer}
-...
+\item{month}{Month of observation, integer}
+\item{day}{Day of observation, integer}
+\item{variable}{Observation type (tavg, prcp), string}
+\item{value}{Observation value, float}
+\item{lat}{Latitude of station, decimal degrees}
+\item{lon}{Longitude of station, decimal degrees}
+\item{elev}{Elevation of station, meters}
+\item{state}{State station is in, US state code string}
+\item{station_name}{Unique name of station, string}
 }
 }
 \source{

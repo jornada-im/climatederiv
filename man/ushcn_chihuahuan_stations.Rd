@@ -10,7 +10,9 @@ A data frame with 9 rows and 6 variables:
 \item{stationid}{USHCN station identifier, unique alphanumeric}
 \item{lat}{Latitude of station, decimal degrees}
 \item{lon}{Longitude of station, decimal degrees}
-...
+\item{elev}{Elevation of station, meters}
+\item{state}{State station is in, US state code string}
+\item{station_name}{Unique name of station, string}
 }
 }
 \source{

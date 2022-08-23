@@ -10,6 +10,9 @@
 #                                                                          #
 ############################################################################
 
+utils::globalVariables(c("data","ushcn_chihuahuan_data","stationid","variable",
+                         "station_name","ushcn_chihuahuan_derived","sc_pdsi",
+                         "spei12mo","station_name"))
 
 #' Create (and write) dataset 103 - climate metrics for 9 Chihuahuan desert
 #' USHCN sites
@@ -21,7 +24,6 @@
 derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
 
   # Get the dataset
-  data("ushcn_chihuahuan_data")
   raw <- ushcn_chihuahuan_data
   #fname <- './data-raw/ChihuahuanDesert_9_USHCN_dataset.csv'   # data set has all 9 sites
   #raw <- readr::read_csv(fname, na=c('', 'NaN', 'NA'))
@@ -120,7 +122,6 @@ derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
 #' @export
 plot_103 <- function(){
   # Get dataset 103
-  data('ushcn_chihuahuan_derived')
   df <- ushcn_chihuahuan_derived
 
   #plot SPEI and PDSI

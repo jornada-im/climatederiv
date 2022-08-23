@@ -11,7 +11,18 @@ A data frame with 11988 rows and 15 variables:
 \item{stationid}{USHCN station identifier, unique alphanumeric}
 \item{date}{Date of observation, POSIXct}
 \item{year}{Year of observation, integer}
-...
+\item{month}{Month of observation, integer}
+\item{day}{Day of observation, integer}
+\item{lat}{Latitude of station, decimal degrees}
+\item{lon}{Longitude of station, decimal degrees}
+\item{elev}{Elevation of station, meters}
+\item{state}{State station is in, US state code string}
+\item{station_name}{Unique name of station, string}
+\item{tavg}{Average monthly air temperature, Celsius}
+\item{prcp}{Monthly precipitation sum, millimeters}
+\item{pet_tho}{Average monthly Thornthwaite potential evapotranspiration, millimeters}
+\item{spei12mo}{12-month SPEI value, std deviation units}
+\item{sc_pdsi}{Self-calibrating PDSI value, units?}
 }
 }
 \source{
