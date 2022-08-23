@@ -55,6 +55,6 @@ See the `DESCRIPTION` file for details. A variety of packages are used.
 
 Install the GitHub version with `devtools`.
 
-    devtools::install_github("gremau/climatederiv")
+    devtools::install_github("jornada-im/climatederiv")
 
 The requirements in the `DESCRIPTION` file should be pulled in at install time if you don't already have them, but there are some that require special handling.
