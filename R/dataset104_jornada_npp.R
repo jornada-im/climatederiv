@@ -37,7 +37,7 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
   print(names(df_list$`G-BASN`))
   head(df_list$`G-BASN`)
 
-  # Package used to calculate vapor pressure deficit
+  # Package used to calculate vapor pressure deficit (was used for testing)
   #library(plantecophys)
 
   # Calculate vapor pressure deficit (vpd) where:
