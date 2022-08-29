@@ -53,11 +53,15 @@ update_chihuahuan_USHCN <- function(
   message("Running python...")
   if(is.null(dest_path)){
     ushcn_chihuahuan_data <- get_chihuahuan_USHCN(ushcn_path,
-                                              reticulate::py_none())
+                                              dest_path=reticulate::py_none())
   }
   else{
-    ushcn_chihuahuan_data <- get_chihuahuan_USHCN(ushcn_path, dest_path)
+    ushcn_chihuahuan_data <- get_chihuahuan_USHCN(ushcn_path,
+                                                  dest_path=dest_path)
   }
+  # For some reason reticulate converts the date column to POSIXct and we don't
+  # need the time. Change back to date
+  ushcn_chihuahuan_data$date <- as.Date(ushcn_chihuahuan_data$date)
   # Make an archive copy of the data file
   message("Archiving previous data file to 'data/ushcn_chihuahuan_data_archive.rda'")
   file.copy('data/ushcn_chihuahuan_data.rda',

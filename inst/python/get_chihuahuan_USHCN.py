@@ -18,7 +18,8 @@ import sys
 # argv[2] is where we want to put the combined file
 # Later versions of the data have had issues...
 # ushcn_path = '/home/greg/data/rawdata/NCDC/ushcn_v2.5/ushcn.v2.5.5.20220609'
-def get_chihuahuan_USHCN(ushcn_path, dest_path=None):
+def get_chihuahuan_USHCN(ushcn_path,
+    sites_path='inst/extdata/USHCN_CDSites.txt', dest_path=None):
 
     # Get the inventory file for USHCN stations (not needed for now)
     # inventory = ushcn.get_stationsfile(os.path.dirname(ushcn_path))
@@ -27,7 +28,7 @@ def get_chihuahuan_USHCN(ushcn_path, dest_path=None):
     # Get the dataframe of 9 Chihuahuan desert sites
     # Note that this table is derived, essentially, from the station inventory
     # file for USHCN - ushcn-v2.5-stations.txt
-    chides_sites = pd.read_table(os.path.join('inst/extdata/USHCN_CDSites.txt'))
+    chides_sites = pd.read_table(os.path.join(sites_path))
 
     print('The table of USHCN stations in the Chihuahuan Desert')
     print(chides_sites)
