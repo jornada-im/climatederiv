@@ -98,13 +98,7 @@ derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
   # Arrange according to station name
   spei_out <- dplyr::arrange(spei_out, station_name)
 
-
   ushcn_chihuahuan_derived <- spei_out
-  message("Archiving previous data file to 'data/ushcn_chihuahuan_derived_archive.rda'")
-  file.copy('data/ushcn_chihuahuan_derived.rda',
-            'data/ushcn_chihuahuan_derived_archive.rda',
-            overwrite=T)
-  save(ushcn_chihuahuan_derived, file='data/ushcn_chihuahuan_derived.rda')
 
   # Write a csv if asked
   if(!is.null(dest_path)){
@@ -148,6 +142,30 @@ plot_103 <- function(){
   print(doublepanel)
 
 }
+
+
+#' Update the Chihuahuan Desert USHCN DERIVED dataset
+#'
+#' Update the package dataset `data/ushcn_chihuahuan_derived.rda`. This is not
+#' exported so use `devtools::load_all()` to access.
+#'
+#' @param new_derived New dataset 103 to replace `ushcn_chihuahuan_derived.rda`
+#' @returns A new rda file in data/
+dev_save_103 <- function(new_derived){
+  #Get the current rda file
+  ushcn_chihuahuan_derived_archive <- ushcn_chihuahuan_derived
+  # Create the path for the archive
+  lastdate <- as.Date(max(ushcn_chihuahuan_derived_archive$date))
+  archive_fpath <- paste0('data/ushcn_chihuahuan_derived_', lastdate, '.rda')
+  # Save earlier data version to archive path
+  message("Archiving previous data file to '", archive_fpath, "'")
+  save(ushcn_chihuahuan_derived_archive, file=archive_fpath)
+  # Overwrite with the new file
+  message('Writing new file...')
+  ushcn_chihuahuan_derived <- new_derived
+  save(ushcn_chihuahuan_derived, file='data/ushcn_chihuahuan_derived.rda')
+}
+
 
 
 

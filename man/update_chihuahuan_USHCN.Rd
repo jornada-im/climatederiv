@@ -18,8 +18,9 @@ update_chihuahuan_USHCN(
 \item{dest_path}{Path for output csv file (default NULL, with no output csv)}
 }
 \value{
-A dataframe loaded from EDI
+A new rda file in \verb{data/}
 }
 \description{
-Update the Chihuahuan Desert USHCN dataset
+Update the package dataset \code{data/ushcn_chihuahuan_data.rda}. This is not
+exported so use \code{devtools::load_all()} to access.
 }

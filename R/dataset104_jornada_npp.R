@@ -182,11 +182,6 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
                                       everything())
 
   jrn_npp_derived <- npp_out
-  message("Archiving previous data file to 'data/jrn_npp_derived_archive.rda'")
-  file.copy('data/jrn_npp_derived.rda',
-            'data/jrn_npp_derived_archive.rda',
-            overwrite=T)
-  save(jrn_npp_derived, file='data/jrn_npp_derived.rda')
 
   # Write a csv if asked
   if(!is.null(dest_path)){
@@ -195,4 +190,29 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
     readr::write_csv(jrn_npp_derived, fout)
   }
   return(jrn_npp_derived)
+}
+
+
+#' Update the Jornada NPP DERIVED dataset
+#'
+#' Update the package dataset `data/jrn_NPP_derived.rda`. This is not
+#' exported so use `devtools::load_all()` to access.
+#'
+#' @param new_derived New dataset 104 to replace `jrn_npp_derived.rda`
+#' @returns A new rda file in 'data/'
+dev_save_104 <- function(new_derived){
+  #Get the current rda file
+  jrn_npp_derived_archive <- jrn_npp_derived
+  # Create the path for the archive
+  lastdate <- paste(jrn_npp_derived_archive[nrow(jrn_npp_derived_archive),'year'],
+                    jrn_npp_derived_archive[nrow(jrn_npp_derived_archive),'month'],
+                    sep="-")
+  archive_fpath <- paste0('data/jrn_npp_derived_', lastdate, '.rda')
+  # Save earlier data version to archive path
+  message("Archiving previous data file to '", archive_fpath, "'")
+  save(jrn_npp_derived_archive, file=archive_fpath)
+  # Overwrite with the new file
+  message('Writing new file...')
+  jrn_npp_derived <- new_derived
+  save(jrn_npp_derived, file='data/jrn_npp_derived.rda')
 }

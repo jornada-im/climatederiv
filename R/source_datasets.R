@@ -29,10 +29,13 @@ from_edi <- function(pkgid, rrev=0, scope='knb-lter-jrn', skip=0){
 
 #' Update the Chihuahuan Desert USHCN dataset
 #'
+#' Update the package dataset `data/ushcn_chihuahuan_data.rda`. This is not
+#' exported so use `devtools::load_all()` to access.
+#'
 #' @param ushcn_path Path to a downloaded archive of the USHCN dataset
 #' @param condaenv_path Path to the climatederiv conda environment on the host
 #' @param dest_path Path for output csv file (default NULL, with no output csv)
-#' @returns A dataframe loaded from EDI
+#' @returns A new rda file in `data/`
 update_chihuahuan_USHCN <- function(
     ushcn_path='/home/greg/data/rawdata/NCDC/ushcn_v2.5/ushcn.v2.5.5.20220609/',
     condaenv_path='/home/greg/data/miniconda3/bin/conda',
@@ -45,6 +48,15 @@ update_chihuahuan_USHCN <- function(
       call. = FALSE
     )
   }
+  # Make an archive version of the earlier data file, first get data
+  ushcn_chihuahuan_data_archive <- ushcn_chihuahuan_data
+  # Create a data archive path
+  lastdate <- as.Date(max(ushcn_chihuahuan_data_archive$date))
+  archive_fpath <- paste0('data/ushcn_chihuahuan_data_', lastdate, '.rda')
+  message("Archiving previous data file to '", archive_fpath, "'")
+  # Save to archive path
+  save(ushcn_chihuahuan_data_archive, file=archive_fpath)
+
   # Accessing the correct python environment
   message("Loading `climatederiv` conda environment...")
   reticulate::use_condaenv('climatederiv', conda=condaenv_path)
@@ -62,11 +74,7 @@ update_chihuahuan_USHCN <- function(
   # For some reason reticulate converts the date column to POSIXct and we don't
   # need the time. Change back to date
   ushcn_chihuahuan_data$date <- as.Date(ushcn_chihuahuan_data$date)
-  # Make an archive copy of the data file
-  message("Archiving previous data file to 'data/ushcn_chihuahuan_data_archive.rda'")
-  file.copy('data/ushcn_chihuahuan_data.rda',
-            'data/ushcn_chihuahuan_data_archive.rda',
-            overwrite=T)
+
   # Overwrite with the new file
   message('Writing new file...')
   save(ushcn_chihuahuan_data, file='data/ushcn_chihuahuan_data.rda')
