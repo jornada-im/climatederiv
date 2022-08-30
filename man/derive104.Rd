@@ -15,5 +15,6 @@ derive104(fname = "jrn_npp_derived.csv", dest_path = NULL)
 A dataframe with derived data
 }
 \description{
-Create (and write) dataset 104 - climate metrics for the 15 Jornada NPP sites
+Note that there is some checking for missing values in monthly data and
+removal of NaN/Inf values, but SPEI still gets calculated.
 }

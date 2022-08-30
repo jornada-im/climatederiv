@@ -4,15 +4,17 @@
     "license": "https://spdx.org/licenses/MIT",
     "codeRepository": "git+https://github.com/jornada-im/climatederiv",
     "dateCreated": "2022-08-05",
-    "datePublished": "2022-08-05",
-    "dateModified": "2022-08-05",
+    "datePublished": "2022-08-30",
+    "dateModified": "2022-08-30",
     "downloadUrl": "https://github.com/jornada-im/climatederiv/archive/refs/heads/main.zip",
     "issueTracker": "https://github.com/jornada-im/climatederiv/issues",
-    "name": "climate-metrics",
-    "version": "0.0.1",
+    "name": "climatederiv",
+    "version": "0.0.1.000",
     "description": "Computes derived climate metrics from Jornada Basin LTER (southern NM, USA) and southwest regional weather station data.",
     "applicationCategory": "climate and meteorology",
     "funding": "DEB 2025166, DBI 1931143, DBI 1931174",
+    "developmentStatus": "active",
+    "isPartOf": "https://jornada-im.github.io",
     "funder": {
         "@type": "Organization",
         "name": "NSF"
@@ -28,22 +30,14 @@
     "programmingLanguage": [
         "R"
     ],
+    "operatingSystem": [
+        "Cross-platform"
+    ],
     "softwareRequirements": [
         "R packages on CRAN: scPDSI, SPEI",
         "https://github.com/gremau/rclimtools"
     ],
     "author": [
-        {
-            "@type": "Person",
-            "@id": "https://orcid.org/0000-0002-2701-4870",
-            "givenName": "Brianda",
-            "familyName": "Hernandez Rosales",
-            "email": "bnhernandez90@outlook.com",
-            "affiliation": {
-                "@type": "Organization",
-                "name": "Environmental Data Initiative"
-            }
-        },
         {
             "@type": "Person",
             "@id": "https://orcid.org/0000-0002-3007-8058",
@@ -53,6 +47,17 @@
             "affiliation": {
                 "@type": "Organization",
                 "name": "Jornada Basin LTER, New Mexico State University"
+            }
+        },
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-2701-4870",
+            "givenName": "Brianda",
+            "familyName": "Hernandez Rosales",
+            "email": "bnhernandez90@outlook.com",
+            "affiliation": {
+                "@type": "Organization",
+                "name": "Environmental Data Initiative"
             }
         }
     ]

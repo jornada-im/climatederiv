@@ -15,6 +15,9 @@ utils::globalVariables(c("Date","Year","Month","Ppt_mm_Tot","Air_TempC_Max",
 
 #' Create (and write) dataset 104 - climate metrics for the 15 Jornada NPP sites
 #'
+#' Note that there is some checking for missing values in monthly data and
+#' removal of NaN/Inf values, but SPEI still gets calculated.
+#'
 #' @param fname Name of the file to write if dest_path != NULL
 #' @param dest_path Path to write fname to. No file written if NULL (default)
 #' @returns A dataframe with derived data
@@ -96,13 +99,17 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
 
     # Make NaN values = NA
     # At some site/month/variable combinations in a dataset, there are no non-NA
-    # values. Calculating the mean with na.rm=T in these cases gives NaN, which
-    # leads to problems later on. Change the NaNs to NA.
+    # values. Calculating the mean with na.rm=T in these cases gives NaN, and
+    # min.max give Inf values, which leads to problems later on. Change the NaNs
+    # and Infs to NA.
     # *NOTE* SPEI package is continuing to calculate SPEI values for monthly temperature
     # data with NA values. It is belived that SPEI is interpolating due to 12-month
     # SPEI time scale longer than missing data. This should be revisited.
-    dfm <- dfm %>% dplyr::mutate(dplyr::across(tavg:tmax,
-                             ~replace(., is.nan(.), NA)))
+    dfm <- dfm %>% dplyr::mutate(dplyr::across(tavg:vpdmax,
+                                               ~replace(., is.nan(.), NA)),
+                             dplyr::across(tavg:vpdmax,
+                                           ~replace(., is.infinite(.), NA)))
+    dfm$ppt[is.na(dfm$tavg)] <- NA
 
     # SPEI can throw errors
     tryCatch({
@@ -133,6 +140,8 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
       dfm['spei12mo'] <- NA
     }
     dfm['sitename'] <- sitename
+
+    # Now return the monthly dataframe
     return(dfm)
   }
 

@@ -1,6 +1,6 @@
 Package: climatederiv
 Title: Create datasets derived from published Jornada climate data
-Version: 0.0.0.9000
+Version: 0.0.1.0000
 Authors@R: c(
     person("Gregory", "Maurer", , "gmaurer@nmsu.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-3007-8058")),
