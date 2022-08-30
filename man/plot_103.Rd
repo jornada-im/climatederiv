@@ -4,10 +4,13 @@
 \alias{plot_103}
 \title{Make some plots of the 9-site Chihuahuan Desert USHCN dataset}
 \usage{
-plot_103()
+plot_103(df = ushcn_chihuahuan_derived)
+}
+\arguments{
+\item{df}{The dataset to plot - ushcn_chihuahuan_derived is default}
 }
 \value{
-Some figures are printed
+Some plots of ushcn_chihuahuan_derived data
 }
 \description{
 Make some plots of the 9-site Chihuahuan Desert USHCN dataset

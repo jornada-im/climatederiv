@@ -112,16 +112,18 @@ derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
 
 #' Make some plots of the 9-site Chihuahuan Desert USHCN dataset
 #'
-#' @returns Some figures are printed
+#' @param df The dataset to plot - ushcn_chihuahuan_derived is default
+#' @returns Some plots of ushcn_chihuahuan_derived data
 #' @export
-plot_103 <- function(){
-  # Get dataset 103
-  df <- ushcn_chihuahuan_derived
+plot_103 <- function(df=ushcn_chihuahuan_derived){
 
   #plot SPEI and PDSI
+  colors = c('scPDSI' = "tomato", 'spei12mo' = 'blue')
   g1 <- ggplot2::ggplot(df, ggplot2::aes(x=date))+
-    ggplot2::geom_line(ggplot2::aes( y = sc_pdsi), color = "red") +
-    ggplot2::geom_line(ggplot2::aes(y = spei12mo), color = "blue") +
+    ggplot2::geom_line(ggplot2::aes(y = sc_pdsi, color = "scPDSI")) +
+    ggplot2::geom_line(ggplot2::aes(y = spei12mo, color = 'spei12mo')) +
+    ggplot2::scale_color_manual(values = colors) +
+    ggplot2::labs(x = "Year", y = "Drought index value", color = "Legend") +
     ggplot2::facet_wrap(~station_name)
   print(g1)
 
@@ -140,6 +142,8 @@ plot_103 <- function(){
   doublepanel <- cowplot::plot_grid(spei.plot, pdsi.plot,
                                     labels = c('A', 'B'), label_size = 12)
   print(doublepanel)
+
+  return(list(plot1=g1, plot2=doublepanel))
 
 }
 
