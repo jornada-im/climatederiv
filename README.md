@@ -45,7 +45,16 @@ This will require the `reticulate` R package and a Conda environment with pandas
     wget https://github.com/jornada-im/climatederiv/blob/main/inst/python/climatederiv.yml
     conda env create -f climatederiv.yml
 
-To update the station dataset run the `update_chihuahuan_USHCN()` function. A csv file can be output in the process if desired.
+You will then need a directory containing the most recent USHCN temperature and precipitation data (at least from the sites of interest). The archived files for creating this directory can be downloaded from the [NCEI data server](https://www.ncei.noaa.gov/pub/data/ushcn/v2.5/), and then unzipped, or use these commands in your system shell (`bash`, `zsh`, etc):
+
+    mkdir ushcn-latest
+    urls="https://www.ncei.noaa.gov/pub/data/ushcn/v2.5/ushcn-v2.5-stations.txt https://www.ncei.noaa.gov/pub/data/ushcn/v2.5/ushcn.prcp.latest.FLs.52j.tar.gz https://www.ncei.noaa.gov/pub/data/ushcn/v2.5/ushcn.tavg.latest.FLs.52j.tar.gz"
+    for val in $urls; do
+        wget $val -P ushcn-latest/
+    done
+    cat ushcn-latest/*.tar.gz | tar -xzvf - -i -C ushcn-latest/
+
+To update the station dataset run the `update_chihuahuan_USHCN()` function. You will need to point this function to a local directory you created (`ushcn-latest` if you used the commands above) containing the USHCN data. A csv file can be output in the process if desired using the `dest_path =` option.
 
 ## Requirements
 
