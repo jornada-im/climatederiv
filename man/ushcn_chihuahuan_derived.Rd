@@ -19,7 +19,7 @@ A data frame with 11988 rows and 15 variables:
 \item{state}{State station is in, US state code string}
 \item{station_name}{Unique name of station, string}
 \item{tavg}{Average monthly air temperature, Celsius}
-\item{prcp}{Monthly precipitation sum, millimeters}
+\item{ppt}{Monthly precipitation sum, millimeters}
 \item{pet_tho}{Average monthly Thornthwaite potential evapotranspiration, millimeters}
 \item{spei12mo}{12-month SPEI value, std deviation units}
 \item{sc_pdsi}{Self-calibrating PDSI value, units?}

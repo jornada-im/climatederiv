@@ -42,32 +42,12 @@ derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
 
     ## Subset the main dataset and calculate PET
     stndf <- subset(raw, stationid==stn[i] & date > '1910-12-31') # For cross-raw, limit to 1999 forward
-    tavg <- subset(stndf, variable=='tavg')
-    prcp <- subset(stndf, variable=='prcp')
-    pet <- SPEI::thornthwaite(tavg$value, unique(tavg$lat))
-    # Prepare datetime index
-    tavg$month <- lubridate::month(tavg$date)
-    dateidx <- zoo::as.yearmon(paste(tavg$month, '/', tavg$year, sep=''), "%m/%Y")
-    # Precip and PET timeseries
-    prcp_xts <- xts::xts(prcp$value, order.by=dateidx)
-    pet_xts <- xts::xts(as.numeric(pet), order.by=dateidx)
 
     # Get spei tools, if not already installed use:
     # devtools::install_github("gremau/rclimtools")
-    ## Climatic water differential
-    cwdiff <- rclimtools::get_cwdiff(prcp_xts, pet_xts)
+    # Calculate 12 month spei
+    spei_raw <- rclimtools::add_spei_cols(stndf, 'tavg', 'ppt', scale_mo = 12)
 
-    ## Now get 1year SPEI and extract values
-    spei_12mo <- rclimtools::get_spei(cwdiff, scale=12,
-                                      locname=unique(stndf$station_name))
-    spei_xts <- xts::xts(as.vector(spei_12mo$fitted),
-                         order.by=zoo::index(cwdiff))
-    colnames(spei_xts) <- c('spei12mo')
-
-    # Create a new dataframe (from tavg) and add SPEI values
-    spei_raw <- tidyr::pivot_wider(stndf, names_from='variable')
-    spei_raw['pet_tho'] <- as.vector(pet_xts)
-    spei_raw['spei12mo'] <- as.vector(spei_xts$spei12mo)
     # Good for verification but not needed in final dat afile
     #spei_raw['spei_date'] <- zoo::index(spei_xts)
 
@@ -81,7 +61,7 @@ derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
     # install.packages('path/to/scPDSI', repos=NULL, type="source")
 
     #library(scPDSI)
-    pdsi <- scPDSI::pdsi(spei_raw$prcp, spei_raw$pet_tho, start = 1911,
+    pdsi <- scPDSI::pdsi(spei_raw$ppt, spei_raw$pet_tho, start = 1911,
                           sc = TRUE )
     summary(pdsi)
 
