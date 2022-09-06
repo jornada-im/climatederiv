@@ -19,7 +19,9 @@ import sys
 # Later versions of the data have had issues...
 # ushcn_path = '/home/greg/data/rawdata/NCDC/ushcn_v2.5/ushcn.v2.5.5.20220609'
 def get_chihuahuan_USHCN(ushcn_path,
-    sites_path='inst/extdata/USHCN_CDSites.txt', dest_path=None):
+                         sites_path='inst/extdata/USHCN_CDSites.txt',
+                         cutoff_year=2022,
+                         dest_path=None):
 
     # Get the inventory file for USHCN stations (not needed for now)
     # inventory = ushcn.get_stationsfile(os.path.dirname(ushcn_path))
@@ -41,25 +43,32 @@ def get_chihuahuan_USHCN(ushcn_path,
     # drop flags, and convert to correct units
     tavg = ushcn.get_monthly_var('tavg', stationids=studystn, dpath=ushcn_path)
     prcp = ushcn.get_monthly_var('prcp', stationids=studystn, dpath=ushcn_path)
-    # Then subset to years before 2022
+    # Then subset to years before cutoff_year
     print("Subsetting to <2022")
-    tavg = tavg.loc[tavg.year < 2022,:]
-    prcp = prcp.loc[prcp.year < 2022,:]
-    
-    # Merge in other info about the sites
-    print("Merge columns and variables...")
-    tavg = tavg.merge(chides_sites, on='stationid', how='left')
-    prcp = prcp.merge(chides_sites, on='stationid', how='left')
+    tavg = tavg.loc[tavg.year < cutoff_year,:]
+    prcp = prcp.loc[prcp.year < cutoff_year,:]
     
     # Put together the T and PRCP dataframes into one
+    print('Shape of incoming tavg and prcp datasets')
+    print(tavg.shape, prcp.shape)
     out = pd.concat([tavg, prcp])
+    # Pivot to wider form
+    out2 = out.pivot_table(columns='variable', values='value',
+                           index=['stationid','date','year', 'month','day'
+                                  ]).reset_index()
+    print('Shape of output datasets')
+    print(out2.shape)
+    print(out2.head())
+
+    # Merge in other info about the sites
+    print("Merge columns and variables...")
+    out2 = out2.merge(chides_sites, on='stationid', how='left')
     
     if dest_path is not None:
         # Write data out to a file
         print("Write " + dest_path + "ChihuahuanDesert_9_USHCN_dataset.csv")
-        out.to_csv(os.path.join(dest_path,
+        out2.to_csv(os.path.join(dest_path,
             'ChihuahuanDesert_9_USHCN_dataset.csv'),
             index=False)
         
-    out.tail()
-    return(out)
+    return(out2)

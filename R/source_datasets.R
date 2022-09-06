@@ -53,7 +53,7 @@ update_chihuahuan_USHCN <- function(
   # Create a data archive path
   lastdate <- as.Date(max(ushcn_chihuahuan_data_archive$date))
   archive_fpath <- paste0('data/ushcn_chihuahuan_data_', lastdate, '.rda')
-  message("Archiving previous data file to '", archive_fpath, "'")
+   message("Archiving previous data file to '", archive_fpath, "'")
   # Save to archive path
   save(ushcn_chihuahuan_data_archive, file=archive_fpath)
 
@@ -73,9 +73,16 @@ update_chihuahuan_USHCN <- function(
   }
   # For some reason reticulate converts the date column to POSIXct and we don't
   # need the time. Change back to date
-  ushcn_chihuahuan_data$date <- as.Date(ushcn_chihuahuan_data$date)
+  ushcn_chihuahuan_data <-ushcn_chihuahuan_data %>%
+    dplyr::mutate(date = as.Date(date)) %>%
+    dplyr::rename(ppt=prcp)
+
+  # Convert NaN to NA
+  ushcn_chihuahuan_data[sapply(ushcn_chihuahuan_data, is.nan)] <- NA
 
   # Overwrite with the new file
   message('Writing new file...')
   save(ushcn_chihuahuan_data, file='data/ushcn_chihuahuan_data.rda')
+
+  return(ushcn_chihuahuan_data)
 }

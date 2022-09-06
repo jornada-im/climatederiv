@@ -12,8 +12,8 @@ A data frame with 28776 rows and 12 variables:
 \item{year}{Year of observation, integer}
 \item{month}{Month of observation, integer}
 \item{day}{Day of observation, integer}
-\item{variable}{Observation type (tavg, prcp), string}
-\item{value}{Observation value, float}
+\item{tavg}{Observed temperature (monthly average), numeric}
+\item{ppt}{Observed precipitation (monthly sum), numeric}
 \item{lat}{Latitude of station, decimal degrees}
 \item{lon}{Longitude of station, decimal degrees}
 \item{elev}{Elevation of station, meters}
