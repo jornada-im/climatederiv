@@ -41,13 +41,13 @@
 "ushcn_chihuahuan_stations"
 
 
-#' Dataset 103 - Monthly derived climate metrics from 9 Chihuahuan desert USHCN
+#' Dataset 201 - Monthly derived climate metrics from 9 Chihuahuan desert USHCN
 #' weather stations.
 #'
 #' A dataset containing stationids, names, location information, and time series
 #' of met and derived climate indices (SPEI, scPDSI) for the 9 USHCN stations
 #' located in the northern Chihuahuan Desert (U.S.A. portion).  Published to
-#' EDI as Jornada dataset 103.
+#' EDI as Jornada dataset 201.
 #'
 #' @format A data frame with 11988 rows and 15 variables:
 #' \describe{
@@ -68,18 +68,18 @@
 #'   \item{sc_pdsi}{Self-calibrating PDSI value, units?}
 #' }
 #' @source \describe{Derived from the ushcn_chihuahuan_data dataset and
-#' derive103_ushcn_chihuahuan.R file}
+#' derive201_ushcn_chihuahuan.R file}
 "ushcn_chihuahuan_derived"
 
 
-#' Dataset 104 - Monthly derived climate metrics from the 15 Jornada LTER NPP
+#' Dataset 202 - Monthly derived climate metrics from the 15 Jornada LTER NPP
 #' weather stations.
 #'
 #' A dataset containing stationids, names, location information, and time series
 #' of met and derived climate indices (SPEI, scPDSI) for the 15 weather
 #' stations in the Jornada Basin (southern New Mexico, U.S.A.) that are
 #' associated with the long-term NPP study. Published to EDI as Jornada dataset
-#'104.
+#'202.
 #'
 #' @format A data frame with 1513 rows and 15 variables:
 #' \describe{
@@ -100,5 +100,5 @@
 #' \item{spei12mo}{12-month SPEI value, std deviation units}
 #' }
 #' @source \describe{Derived from published EDI datasets and the
-#' derive104_jornada_npp.R file}
+#' derive202_jornada_npp.R file}
 "jrn_npp_derived"

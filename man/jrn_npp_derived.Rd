@@ -3,7 +3,7 @@
 \docType{data}
 \name{jrn_npp_derived}
 \alias{jrn_npp_derived}
-\title{Dataset 104 - Monthly derived climate metrics from the 15 Jornada LTER NPP
+\title{Dataset 202 - Monthly derived climate metrics from the 15 Jornada LTER NPP
 weather stations.}
 \format{
 A data frame with 1513 rows and 15 variables:
@@ -27,7 +27,7 @@ A data frame with 1513 rows and 15 variables:
 }
 \source{
 \describe{Derived from published EDI datasets and the
-derive104_jornada_npp.R file}
+derive202_jornada_npp.R file}
 }
 \usage{
 jrn_npp_derived
@@ -37,6 +37,6 @@ A dataset containing stationids, names, location information, and time series
 of met and derived climate indices (SPEI, scPDSI) for the 15 weather
 stations in the Jornada Basin (southern New Mexico, U.S.A.) that are
 associated with the long-term NPP study. Published to EDI as Jornada dataset
-104.
+202.
 }
 \keyword{datasets}

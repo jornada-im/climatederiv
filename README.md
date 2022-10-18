@@ -6,27 +6,27 @@ Climate metrics derived from published Jornada and regional datasets.
 
 The following datasets contain derived climate metrics for locations in the northern Chihuahuan Desert, including the Jornada Basin. These metrics are calculated using public data from NOAA or EDI. The datasets are available by name in the package namespace, and this R package provides functions for creating, updating, and viewing them.
 
-### Dataset 103 - derived metrics for Chihuahuan desert USHCN sites
+### Dataset 201 - derived metrics for Chihuahuan desert USHCN sites
 
 This dataset contains meteorology and derived climate metrics (drought indices, PET) for the 9 USHCN weather stations located in the Chihuahuan Desert.
 
 Name: `ushcn_chihuahuan_derived`
 
-Published version: EDI [knb-lter-jrn.103.n](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-jrn&identifier=103)
+Published version: EDI [knb-lter-jrn.201.n](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-jrn&identifier=103)
 
-Build function: `derive103()`. This build function updates the dataset in the namespace (`data/ushcn_chihuahuan_derived.rda`) and returns the dataframe. Add `path = <path>` to output a csv, and `fname = <file name>` to give it a more descriptive name.
+Build function: `derive201()`. This build function updates the dataset in the namespace (`data/ushcn_chihuahuan_derived.rda`) and returns the dataframe. Add `path = <path>` to output a csv, and `fname = <file name>` to give it a more descriptive name.
 
-Plotting: You can plot a few things with `plot_103()`.
+Plotting: You can plot a few things with `plot_201()`.
 
-## Dataset 104 - derived metrics for Jornada Basin NPP sites
+## Dataset 202 - derived metrics for Jornada Basin NPP sites
 
 This dataset contains meteorology and derived climate metrics (drought indices, PET, VPD) for the 15 weather stations associated with the Jornada LTER NPP study sites.
 
 Name: `jrn_npp_derived`
 
-Published version: EDI [knb-lter-jrn.104.n](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-jrn&identifier=104)
+Published version: EDI [knb-lter-jrn.202.n](https://portal.edirepository.org/nis/mapbrowse?scope=knb-lter-jrn&identifier=104)
 
-Build function: `derive104()`. This build function updates the dataset in the namespace (`data/jrn_npp_derived.rda`) and returns the dataframe. Add `path = <path>` to output a csv, and `fname = <file name>` to give it a more descriptive name.
+Build function: `derive202()`. This build function updates the dataset in the namespace (`data/jrn_npp_derived.rda`) and returns the dataframe. Add `path = <path>` to output a csv, and `fname = <file name>` to give it a more descriptive name.
 
 ## Source datasets
 

@@ -13,7 +13,7 @@ utils::globalVariables(c("Date","Year","Month","Ppt_mm_Tot","Air_TempC_Max",
                          "Relative_Humidity_Min","Relative_Humidity_Avg",
                          "VPD_Avg","tavg","tmax","sitename","everything"))
 
-#' Create (and write) dataset 104 - climate metrics for the 15 Jornada NPP sites
+#' Create (and write) dataset 202 - climate metrics for the 15 Jornada NPP sites
 #'
 #' Note that there is some checking for missing values in monthly data and
 #' removal of NaN/Inf values, but SPEI still gets calculated.
@@ -22,7 +22,7 @@ utils::globalVariables(c("Date","Year","Month","Ppt_mm_Tot","Air_TempC_Max",
 #' @param dest_path Path to write fname to. No file written if NULL (default)
 #' @returns A dataframe with derived data
 #' @export
-derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
+derive202 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
 
   # Get daily data for grassland, creosote, and mesquite NPP sites at JRN
   sites <- c('C-CALI','C-GRAV','C-SAND','G-BASN','G-IBPE','G-SUMM','M-NORT','M-RABB','M-WELL','P-COLL','P-SMAL',
@@ -207,9 +207,9 @@ derive104 <- function(fname='jrn_npp_derived.csv', dest_path=NULL){
 #' Update the package dataset `data/jrn_NPP_derived.rda`. This is not
 #' exported so use `devtools::load_all()` to access.
 #'
-#' @param new_derived New dataset 104 to replace `jrn_npp_derived.rda`
+#' @param new_derived New dataset 202 to replace `jrn_npp_derived.rda`
 #' @returns A new rda file in 'data/'
-dev_save_104 <- function(new_derived){
+dev_save_202 <- function(new_derived){
   #Get the current rda file
   jrn_npp_derived_archive <- jrn_npp_derived
   # Create the path for the archive

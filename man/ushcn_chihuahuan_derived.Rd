@@ -3,7 +3,7 @@
 \docType{data}
 \name{ushcn_chihuahuan_derived}
 \alias{ushcn_chihuahuan_derived}
-\title{Dataset 103 - Monthly derived climate metrics from 9 Chihuahuan desert USHCN
+\title{Dataset 201 - Monthly derived climate metrics from 9 Chihuahuan desert USHCN
 weather stations.}
 \format{
 A data frame with 11988 rows and 15 variables:
@@ -27,7 +27,7 @@ A data frame with 11988 rows and 15 variables:
 }
 \source{
 \describe{Derived from the ushcn_chihuahuan_data dataset and
-derive103_ushcn_chihuahuan.R file}
+derive201_ushcn_chihuahuan.R file}
 }
 \usage{
 ushcn_chihuahuan_derived
@@ -36,6 +36,6 @@ ushcn_chihuahuan_derived
 A dataset containing stationids, names, location information, and time series
 of met and derived climate indices (SPEI, scPDSI) for the 9 USHCN stations
 located in the northern Chihuahuan Desert (U.S.A. portion).  Published to
-EDI as Jornada dataset 103.
+EDI as Jornada dataset 201.
 }
 \keyword{datasets}

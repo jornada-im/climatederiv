@@ -14,14 +14,14 @@ utils::globalVariables(c("data","ushcn_chihuahuan_data","stationid","variable",
                          "station_name","ushcn_chihuahuan_derived","sc_pdsi",
                          "spei12mo","station_name"))
 
-#' Create (and write) dataset 103 - climate metrics for 9 Chihuahuan desert
+#' Create (and write) dataset 201 - climate metrics for 9 Chihuahuan desert
 #' USHCN sites
 #'
 #' @param fname Name of the file to write if dest_path != NULL
 #' @param dest_path Path to write fname to. No file written if NULL (default)
 #' @returns A dataframe with derived data
 #' @export
-derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
+derive201 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
 
   # Get the dataset
   raw <- ushcn_chihuahuan_data
@@ -95,7 +95,7 @@ derive103 <- function(fname='ushcn_chihuahuan_derived.csv', dest_path=NULL){
 #' @param df The dataset to plot - ushcn_chihuahuan_derived is default
 #' @returns Some plots of ushcn_chihuahuan_derived data
 #' @export
-plot_103 <- function(df=ushcn_chihuahuan_derived){
+plot_201 <- function(df=ushcn_chihuahuan_derived){
 
   #plot SPEI and PDSI
   colors = c('scPDSI' = "tomato", 'spei12mo' = 'blue')
@@ -133,9 +133,9 @@ plot_103 <- function(df=ushcn_chihuahuan_derived){
 #' Update the package dataset `data/ushcn_chihuahuan_derived.rda`. This is not
 #' exported so use `devtools::load_all()` to access.
 #'
-#' @param new_derived New dataset 103 to replace `ushcn_chihuahuan_derived.rda`
+#' @param new_derived New dataset 201 to replace `ushcn_chihuahuan_derived.rda`
 #' @returns A new rda file in data/
-dev_save_103 <- function(new_derived){
+dev_save_201 <- function(new_derived){
   #Get the current rda file
   ushcn_chihuahuan_derived_archive <- ushcn_chihuahuan_derived
   # Create the path for the archive
